@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,7 +17,13 @@ class PeachControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void peach_shouldReturnCatchPhrase() throws Exception {
+    void getPeach_shouldReturnCatchPhrase() throws Exception {
         //TODO: Implement test
     }
+
+    @Test
+    void postPeach_shouldReturnWeirdPostPhrase() throws Exception {
+        mockMvc.perform(post("/peach"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("I'm posting peaches!"));    }
 }
