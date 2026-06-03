@@ -118,7 +118,7 @@ jobs:
       - name: Prepare Docker context (copy JAR)
         run: |
           set -euo pipefail
-          JAR_FILE=$(find docker -type f -name "*.jar" | head -n1 || true)
+          JAR_FILE=$(ls -1 build/libs/*.jar 2>/dev/null | grep -v "-plain\.jar$" | head -n1 || true)
           if [ -z "${JAR_FILE}" ]; then
             echo "[ERROR] No JAR found in downloaded artifact. Contents:";
             ls -R docker || true; exit 1; fi
