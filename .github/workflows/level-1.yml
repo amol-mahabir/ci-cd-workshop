@@ -1,13 +1,12 @@
 name: Level 1 - Yoshi's Island
 
 on:
-  workflow_dispatch: {
+  workflow_dispatch:
     inputs:
       message:
         description: 'Dit is een workflow dispatch'
         required: false
         default: 'Hallo!'
-  }
 
 jobs:
   build:
@@ -28,6 +27,10 @@ jobs:
       - name: Check Java version
         run: java -version
 
-      # 4. Build project
+      # 4. Set up Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # 5. Build project
       - name: Build with Gradle
         run: ./gradlew clean build
