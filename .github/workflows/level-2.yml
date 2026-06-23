@@ -39,7 +39,7 @@ jobs:
       - name: Test Summary
         uses: test-summary/action@v2
         with:
-          paths: "build/reports/tests/test/index.html"
+          paths: "build/test-results/test/TEST-*.xml"
         if: always()
 
 
