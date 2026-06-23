@@ -18,7 +18,7 @@ class MarioControllerTest {
     @Test
     void mario_shouldReturnCatchPhrase() throws Exception {
         mockMvc.perform(get("/mario"))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(content().string("It's-a me, Mario!"));
     }
 }

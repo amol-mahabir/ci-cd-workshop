@@ -43,7 +43,7 @@ jobs:
           output: "test-summary.md"
         if: always()
 
-      # 7. Export test results
+      # 7. Upload test results
       - name: Upload test summary
         uses: actions/upload-artifact@v6
         with:

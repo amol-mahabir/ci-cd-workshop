@@ -20,6 +20,30 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      # 5. Build project
+      - name: Build with Gradle
+        run: ./gradlew clean test
+
+      # 6. Export test results
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "build/test-results/test/TEST-*.xml"
+        if: always()
+
+      - name: Run Code Coverage
+        run: |
+            chmod +x gradlew
+            ./gradlew jacocoTestReport
+
+      - name: Upload JaCoCo Report
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: code-coverage-report
+          path: |
+            ${{ github.workspace }}/**/build/reports/jacoco/test/html/*
+            ${{ github.workspace }}/**/target/site/jacoco/*
+
         # TODO - Run de testen
 
         # TODO - Hanteer een minimale code coverage
